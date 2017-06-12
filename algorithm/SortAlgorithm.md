@@ -50,9 +50,40 @@ javascript:
             list[right] = list[left];
         }
         list[left] = pivot;
-        this.sort(list, begin, left - 1); // 递归调用
+        this.sort(list, begin, left - 1);
         this.sort(list, left + 1, end);
     }
 ```
+
+## 选择排序
+和冒泡差不多的排序方法，区别在于冒泡一直换，而选择每次遍历只换一次。
+1. 思路：
+    *   首先遍历一遍数组找到最大/小的值，存放在起始/结尾位置。
+    *   再在数组剩余的值里，找到最大/小的值，放到数组剩余值的起始/结尾位置。
+    *   以此类推，数组排列完毕。
+2. 实现：
+
+javascript:
+```
+    function sort(list)
+    {
+        var len = list.length;
+        for(var i = 0; i < len - 1; i++)
+        {
+            var min = i; 
+            for(var j = i + 1; j < list.length; j++)
+            {
+                if(list[min] > list[j])
+                    min = j;
+            }
+            var temp = list[min];
+            list[min] = list[i];
+            list[i] = temp;
+        }
+    }
+```
+
+## 插入排序
+
 
 [时间/空间复杂度相关概念](http://blog.csdn.net/zolalad/article/details/11848739)
