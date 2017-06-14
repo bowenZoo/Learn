@@ -150,13 +150,65 @@ javascript:
 ```
 
 ## 归并排序
-归并排序不受输入数据影响，和选择排序时间复杂度相同，但是内存消耗多。
-将已有序的自序列合并，得到完全有序的序列；即先使每个字序列有序，再使子序列段间有序
+先将序列分裂，后再归并，归并时有序归并。
+1.  思路:
+    *   把一个未排序的数列分成两个，再分别把分裂出来的两个数列分别再分裂两个，重复此步骤直到每个序列元素为一个元素时。
+    *   将划分后的两个序列合并成一个有序序列，不断合并排序，直到所有合并排序完成。
+2.  实现:
+
+javascript:
+```
+    function sort(list)
+    {
+        var len = list.length;
+        if(len < 2)
+        {
+            return list;
+        }
+        var middle = parseInt(len / 2);
+        var left = list.slice(0, middle);
+        var right = list.slice(middle);
+        return mergeSort(sort(left), sort(right));
+    }
+
+    //归并排序
+    function mergeSort(left, right)
+    {
+        var result = [];
+        while (left.length && right.length)
+        {
+            if (left[0] <= right[0])
+            {
+                result.push(left.shift());
+            }else
+            {
+                result.push(right.shift());
+            }
+        }
+
+        while (left.length)
+        {
+            result.push(left.shift());
+        }
+        
+        while (right.length)
+        {
+            result.push(right.shift());
+        }
+        return result;
+    }
+```
 
 ## 堆排序
+堆排序近似二叉树的解构，利用堆这种数据结构进行的排序，子节点的键值总小于/大于父节点。
+1. 思路:
+    *   把数组排列成二叉树形式.
+2. 实现:
 
-
-
+javascript:
+```
+    先完成其他的把 >.< 233333
+```
 
 ## 计数排序
 
